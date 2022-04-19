@@ -1,0 +1,22 @@
+{% extends  "layout.html" %}
+{% block content %}
+  {% for payload in payloads %}
+        <h2>Payload: {{payloads.index(payload) + 1}}</h2>
+      <form action="/productionplan" method="post">
+          <pre id="json">{{payload}}</pre>
+          <h3> Load: <input name=load.load size="255" value={{payload.load}} /> </h3>
+          <h3> Fuels:</h3>
+          {% for fuel in payload.fuels.keys() %}
+            <p> Fuel: {{fuel}} <input name=fuel.{{fuel}} size="255" value={{payload.fuels[fuel]}} /> </p>
+          {% endfor %}
+          <h3> Powerplants:</h3>
+          {% for powerplant in payload.powerplants %}
+            <h4>Powerplant Name: {{powerplant.name}}</h4>
+            {% for  attribute in powerplant.keys() %}
+                <p> Attribute: {{attribute}} <input name=powerplant.{{powerplant.name}}.{{attribute}} size="255" value={{powerplant[attribute]}} /></p>
+            {% endfor %}
+          {% endfor %}
+          <input type="Submit" value="Calculate" />
+      </form>
+  {% endfor %}
+{% endblock content %}

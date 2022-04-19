@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% if title %}
+      <title>{{title}}</title>
+    {% else %}
+      <title>No title</title>
+    {% endif %}
+    <h1>Payloads</h1>
+  </head>
+  <body>
+    {% block content %} {% endblock content %}
+  </body>
+</html>
